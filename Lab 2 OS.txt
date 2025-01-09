@@ -1,0 +1,943 @@
+hung@hung:~$ sudo -i
+root@hung:~# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:992:992:systemd Resolver:/:/usr/sbin/nologin
+pollinate:x:102:1::/var/cache/pollinate:/bin/false
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+landscape:x:106:108::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+sshd:x:107:65534::/run/sshd:/usr/sbin/nologin
+hung:x:1000:1000:Hung:/home/hung:/bin/bash
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+tss:x:109:109:TPM software stack,,,:/var/lib/tpm:/bin/false
+rtkit:x:110:110:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:999:65534:dnsmasq:/var/lib/misc:/usr/sbin/nologin
+kernoops:x:111:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+systemd-oom:x:988:988:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+whoopsie:x:112:112::/nonexistent:/bin/false
+nm-openvpn:x:113:115:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+avahi:x:114:117:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+saned:x:115:118::/var/lib/saned:/usr/sbin/nologin
+colord:x:116:119:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+sssd:x:117:120:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+speech-dispatcher:x:118:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+cups-pk-helper:x:119:121:user for cups-pk-helper service,,,:/nonexistent:/usr/sbin/nologin
+geoclue:x:120:122::/var/lib/geoclue:/usr/sbin/nologin
+cups-browsed:x:121:121::/nonexistent:/usr/sbin/nologin
+hplip:x:122:7:HPLIP system user,,,:/run/hplip:/bin/false
+gnome-remote-desktop:x:987:987:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+gnome-initial-setup:x:123:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:124:124:Gnome Display Manager:/var/lib/gdm3:/bin/false
+root@hung:~# adduser student
+info: Adding user `student' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `student' (1001) ...
+info: Adding new user `student' (1001) with group `student (1001)' ...
+warn: The home directory `/home/student' already exists.  Not touching this directory.
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for student
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+info: Adding new user `student' to supplemental / extra groups `users' ...
+info: Adding user `student' to group `users' ...
+root@hung:~# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:992:992:systemd Resolver:/:/usr/sbin/nologin
+pollinate:x:102:1::/var/cache/pollinate:/bin/false
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+landscape:x:106:108::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+sshd:x:107:65534::/run/sshd:/usr/sbin/nologin
+hung:x:1000:1000:Hung:/home/hung:/bin/bash
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+tss:x:109:109:TPM software stack,,,:/var/lib/tpm:/bin/false
+rtkit:x:110:110:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:999:65534:dnsmasq:/var/lib/misc:/usr/sbin/nologin
+kernoops:x:111:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+systemd-oom:x:988:988:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+whoopsie:x:112:112::/nonexistent:/bin/false
+nm-openvpn:x:113:115:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+avahi:x:114:117:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+saned:x:115:118::/var/lib/saned:/usr/sbin/nologin
+colord:x:116:119:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+sssd:x:117:120:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+speech-dispatcher:x:118:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+cups-pk-helper:x:119:121:user for cups-pk-helper service,,,:/nonexistent:/usr/sbin/nologin
+geoclue:x:120:122::/var/lib/geoclue:/usr/sbin/nologin
+cups-browsed:x:121:121::/nonexistent:/usr/sbin/nologin
+hplip:x:122:7:HPLIP system user,,,:/run/hplip:/bin/false
+gnome-remote-desktop:x:987:987:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+gnome-initial-setup:x:123:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:124:124:Gnome Display Manager:/var/lib/gdm3:/bin/false
+student:x:1001:1001:,,,:/home/student:/bin/bash
+root@hung:~# userdel student
+root@hung:~# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:992:992:systemd Resolver:/:/usr/sbin/nologin
+pollinate:x:102:1::/var/cache/pollinate:/bin/false
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+landscape:x:106:108::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+sshd:x:107:65534::/run/sshd:/usr/sbin/nologin
+hung:x:1000:1000:Hung:/home/hung:/bin/bash
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+tss:x:109:109:TPM software stack,,,:/var/lib/tpm:/bin/false
+rtkit:x:110:110:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:999:65534:dnsmasq:/var/lib/misc:/usr/sbin/nologin
+kernoops:x:111:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+systemd-oom:x:988:988:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+whoopsie:x:112:112::/nonexistent:/bin/false
+nm-openvpn:x:113:115:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+avahi:x:114:117:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+saned:x:115:118::/var/lib/saned:/usr/sbin/nologin
+colord:x:116:119:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+sssd:x:117:120:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+speech-dispatcher:x:118:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+cups-pk-helper:x:119:121:user for cups-pk-helper service,,,:/nonexistent:/usr/sbin/nologin
+geoclue:x:120:122::/var/lib/geoclue:/usr/sbin/nologin
+cups-browsed:x:121:121::/nonexistent:/usr/sbin/nologin
+hplip:x:122:7:HPLIP system user,,,:/run/hplip:/bin/false
+gnome-remote-desktop:x:987:987:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+gnome-initial-setup:x:123:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:124:124:Gnome Display Manager:/var/lib/gdm3:/bin/false
+root@hung:~# cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,hung
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:hung
+floppy:x:25:
+tape:x:26:
+sudo:x:27:hung
+audio:x:29:
+dip:x:30:hung
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:hung
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:999:
+systemd-network:x:998:
+systemd-timesync:x:997:
+input:x:996:
+sgx:x:995:
+kvm:x:994:
+render:x:993:
+lxd:x:101:hung
+messagebus:x:102:
+systemd-resolve:x:992:
+_ssh:x:103:
+polkitd:x:991:
+crontab:x:990:
+syslog:x:104:
+uuidd:x:105:
+rdma:x:106:
+tcpdump:x:107:
+landscape:x:108:
+fwupd-refresh:x:989:
+hung:x:1000:
+tss:x:109:
+rtkit:x:110:
+ssl-cert:x:111:
+systemd-oom:x:988:
+whoopsie:x:112:
+netdev:x:113:
+bluetooth:x:114:
+nm-openvpn:x:115:
+scanner:x:116:saned
+avahi:x:117:
+saned:x:118:
+colord:x:119:
+sssd:x:120:
+lpadmin:x:121:
+geoclue:x:122:
+pipewire:x:123:
+gnome-remote-desktop:x:987:
+gdm:x:124:
+root@hung:~# groupadd -g 125 hello
+root@hung:~# groupadd -g 127 G9
+root@hung:~# cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,hung
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:hung
+floppy:x:25:
+tape:x:26:
+sudo:x:27:hung
+audio:x:29:
+dip:x:30:hung
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:hung
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:999:
+systemd-network:x:998:
+systemd-timesync:x:997:
+input:x:996:
+sgx:x:995:
+kvm:x:994:
+render:x:993:
+lxd:x:101:hung
+messagebus:x:102:
+systemd-resolve:x:992:
+_ssh:x:103:
+polkitd:x:991:
+crontab:x:990:
+syslog:x:104:
+uuidd:x:105:
+rdma:x:106:
+tcpdump:x:107:
+landscape:x:108:
+fwupd-refresh:x:989:
+hung:x:1000:
+tss:x:109:
+rtkit:x:110:
+ssl-cert:x:111:
+systemd-oom:x:988:
+whoopsie:x:112:
+netdev:x:113:
+bluetooth:x:114:
+nm-openvpn:x:115:
+scanner:x:116:saned
+avahi:x:117:
+saned:x:118:
+colord:x:119:
+sssd:x:120:
+lpadmin:x:121:
+geoclue:x:122:
+pipewire:x:123:
+gnome-remote-desktop:x:987:
+gdm:x:124:
+hello:x:125:
+G9:x:127:
+root@hung:~# useradd -g hello -G G9 student
+root@hung:~#
+root@hung:~#
+root@hung:~#
+root@hung:~#
+root@hung:~#
+root@hung:~# cat /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+_apt:x:42:65534::/nonexistent:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:998:998:systemd Network Management:/:/usr/sbin/nologin
+systemd-timesync:x:997:997:systemd Time Synchronization:/:/usr/sbin/nologin
+dhcpcd:x:100:65534:DHCP Client Daemon,,,:/usr/lib/dhcpcd:/bin/false
+messagebus:x:101:102::/nonexistent:/usr/sbin/nologin
+systemd-resolve:x:992:992:systemd Resolver:/:/usr/sbin/nologin
+pollinate:x:102:1::/var/cache/pollinate:/bin/false
+polkitd:x:991:991:User for polkitd:/:/usr/sbin/nologin
+syslog:x:103:104::/nonexistent:/usr/sbin/nologin
+uuidd:x:104:105::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:105:107::/nonexistent:/usr/sbin/nologin
+landscape:x:106:108::/var/lib/landscape:/usr/sbin/nologin
+fwupd-refresh:x:989:989:Firmware update daemon:/var/lib/fwupd:/usr/sbin/nologin
+sshd:x:107:65534::/run/sshd:/usr/sbin/nologin
+hung:x:1000:1000:Hung:/home/hung:/bin/bash
+usbmux:x:108:46:usbmux daemon,,,:/var/lib/usbmux:/usr/sbin/nologin
+tss:x:109:109:TPM software stack,,,:/var/lib/tpm:/bin/false
+rtkit:x:110:110:RealtimeKit,,,:/proc:/usr/sbin/nologin
+dnsmasq:x:999:65534:dnsmasq:/var/lib/misc:/usr/sbin/nologin
+kernoops:x:111:65534:Kernel Oops Tracking Daemon,,,:/:/usr/sbin/nologin
+systemd-oom:x:988:988:systemd Userspace OOM Killer:/:/usr/sbin/nologin
+whoopsie:x:112:112::/nonexistent:/bin/false
+nm-openvpn:x:113:115:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nologin
+avahi:x:114:117:Avahi mDNS daemon,,,:/run/avahi-daemon:/usr/sbin/nologin
+saned:x:115:118::/var/lib/saned:/usr/sbin/nologin
+colord:x:116:119:colord colour management daemon,,,:/var/lib/colord:/usr/sbin/nologin
+sssd:x:117:120:SSSD system user,,,:/var/lib/sss:/usr/sbin/nologin
+speech-dispatcher:x:118:29:Speech Dispatcher,,,:/run/speech-dispatcher:/bin/false
+cups-pk-helper:x:119:121:user for cups-pk-helper service,,,:/nonexistent:/usr/sbin/nologin
+geoclue:x:120:122::/var/lib/geoclue:/usr/sbin/nologin
+cups-browsed:x:121:121::/nonexistent:/usr/sbin/nologin
+hplip:x:122:7:HPLIP system user,,,:/run/hplip:/bin/false
+gnome-remote-desktop:x:987:987:GNOME Remote Desktop:/var/lib/gnome-remote-desktop:/usr/sbin/nologin
+gnome-initial-setup:x:123:65534::/run/gnome-initial-setup/:/bin/false
+gdm:x:124:124:Gnome Display Manager:/var/lib/gdm3:/bin/false
+student:x:1001:125::/home/student:/bin/sh
+root@hung:~# id student
+uid=1001(student) gid=125(hello) groups=125(hello),127(G9)
+root@hung:~#
+root@hung:~#
+root@hung:~#
+root@hung:~#
+root@hung:~# usermod -g G9 student
+root@hung:~# id student
+uid=1001(student) gid=127(G9) groups=127(G9)
+root@hung:~# usermod -aG hello student
+root@hung:~# id student
+uid=1001(student) gid=127(G9) groups=127(G9),125(hello)
+root@hung:~# usermod -r G9 student
+Usage: usermod [options] LOGIN
+
+Options:
+  -a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                the user from other groups
+  -b, --badname                 allow bad names
+  -c, --comment COMMENT         new value of the GECOS field
+  -d, --home HOME_DIR           new home directory for the user account
+  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -f, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -g, --gid GROUP               force use GROUP as new primary group
+  -G, --groups GROUPS           new list of supplementary GROUPS
+  -h, --help                    display this help message and exit
+  -l, --login NEW_LOGIN         new value of the login name
+  -L, --lock                    lock the user account
+  -m, --move-home               move contents of the home directory to the
+                                new location (use only with -d)
+  -o, --non-unique              allow using duplicate (non-unique) UID
+  -p, --password PASSWORD       use encrypted password for the new password
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -r, --remove                  remove the user from only the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                the user from other groups
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             new login shell for the user account
+  -u, --uid UID                 new UID for the user account
+  -U, --unlock                  unlock the user account
+  -v, --add-subuids FIRST-LAST  add range of subordinate uids
+  -V, --del-subuids FIRST-LAST  remove range of subordinate uids
+  -w, --add-subgids FIRST-LAST  add range of subordinate gids
+  -W, --del-subgids FIRST-LAST  remove range of subordinate gids
+  -Z, --selinux-user SEUSER     new SELinux user mapping for the user account
+
+root@hung:~# usermod -r G^Cstudent
+root@hung:~# usermod -r hello  student
+Usage: usermod [options] LOGIN
+
+Options:
+  -a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                the user from other groups
+  -b, --badname                 allow bad names
+  -c, --comment COMMENT         new value of the GECOS field
+  -d, --home HOME_DIR           new home directory for the user account
+  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -f, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -g, --gid GROUP               force use GROUP as new primary group
+  -G, --groups GROUPS           new list of supplementary GROUPS
+  -h, --help                    display this help message and exit
+  -l, --login NEW_LOGIN         new value of the login name
+  -L, --lock                    lock the user account
+  -m, --move-home               move contents of the home directory to the
+                                new location (use only with -d)
+  -o, --non-unique              allow using duplicate (non-unique) UID
+  -p, --password PASSWORD       use encrypted password for the new password
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -r, --remove                  remove the user from only the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                the user from other groups
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             new login shell for the user account
+  -u, --uid UID                 new UID for the user account
+  -U, --unlock                  unlock the user account
+  -v, --add-subuids FIRST-LAST  add range of subordinate uids
+  -V, --del-subuids FIRST-LAST  remove range of subordinate uids
+  -w, --add-subgids FIRST-LAST  add range of subordinate gids
+  -W, --del-subgids FIRST-LAST  remove range of subordinate gids
+  -Z, --selinux-user SEUSER     new SELinux user mapping for the user account
+
+root@hung:~# usermod -r student
+usermod: -r flag is only allowed with the -G flag
+Usage: usermod [options] LOGIN
+
+Options:
+  -a, --append                  append the user to the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                the user from other groups
+  -b, --badname                 allow bad names
+  -c, --comment COMMENT         new value of the GECOS field
+  -d, --home HOME_DIR           new home directory for the user account
+  -e, --expiredate EXPIRE_DATE  set account expiration date to EXPIRE_DATE
+  -f, --inactive INACTIVE       set password inactive after expiration
+                                to INACTIVE
+  -g, --gid GROUP               force use GROUP as new primary group
+  -G, --groups GROUPS           new list of supplementary GROUPS
+  -h, --help                    display this help message and exit
+  -l, --login NEW_LOGIN         new value of the login name
+  -L, --lock                    lock the user account
+  -m, --move-home               move contents of the home directory to the
+                                new location (use only with -d)
+  -o, --non-unique              allow using duplicate (non-unique) UID
+  -p, --password PASSWORD       use encrypted password for the new password
+  -P, --prefix PREFIX_DIR       prefix directory where are located the /etc/* files
+  -r, --remove                  remove the user from only the supplemental GROUPS
+                                mentioned by the -G option without removing
+                                the user from other groups
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             new login shell for the user account
+  -u, --uid UID                 new UID for the user account
+  -U, --unlock                  unlock the user account
+  -v, --add-subuids FIRST-LAST  add range of subordinate uids
+  -V, --del-subuids FIRST-LAST  remove range of subordinate uids
+  -w, --add-subgids FIRST-LAST  add range of subordinate gids
+  -W, --del-subgids FIRST-LAST  remove range of subordinate gids
+  -Z, --selinux-user SEUSER     new SELinux user mapping for the user account
+
+root@hung:~# id student
+uid=1001(student) gid=127(G9) groups=127(G9),125(hello)
+root@hung:~# userdel student
+root@hung:~# cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,hung
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:hung
+floppy:x:25:
+tape:x:26:
+sudo:x:27:hung
+audio:x:29:
+dip:x:30:hung
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:hung
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:999:
+systemd-network:x:998:
+systemd-timesync:x:997:
+input:x:996:
+sgx:x:995:
+kvm:x:994:
+render:x:993:
+lxd:x:101:hung
+messagebus:x:102:
+systemd-resolve:x:992:
+_ssh:x:103:
+polkitd:x:991:
+crontab:x:990:
+syslog:x:104:
+uuidd:x:105:
+rdma:x:106:
+tcpdump:x:107:
+landscape:x:108:
+fwupd-refresh:x:989:
+hung:x:1000:
+tss:x:109:
+rtkit:x:110:
+ssl-cert:x:111:
+systemd-oom:x:988:
+whoopsie:x:112:
+netdev:x:113:
+bluetooth:x:114:
+nm-openvpn:x:115:
+scanner:x:116:saned
+avahi:x:117:
+saned:x:118:
+colord:x:119:
+sssd:x:120:
+lpadmin:x:121:
+geoclue:x:122:
+pipewire:x:123:
+gnome-remote-desktop:x:987:
+gdm:x:124:
+hello:x:125:
+G9:x:127:
+root@hung:~# groupdel hello
+root@hung:~# groupdel G9
+root@hung:~# cat /etc/group
+root:x:0:
+daemon:x:1:
+bin:x:2:
+sys:x:3:
+adm:x:4:syslog,hung
+tty:x:5:
+disk:x:6:
+lp:x:7:
+mail:x:8:
+news:x:9:
+uucp:x:10:
+man:x:12:
+proxy:x:13:
+kmem:x:15:
+dialout:x:20:
+fax:x:21:
+voice:x:22:
+cdrom:x:24:hung
+floppy:x:25:
+tape:x:26:
+sudo:x:27:hung
+audio:x:29:
+dip:x:30:hung
+www-data:x:33:
+backup:x:34:
+operator:x:37:
+list:x:38:
+irc:x:39:
+src:x:40:
+shadow:x:42:
+utmp:x:43:
+video:x:44:
+sasl:x:45:
+plugdev:x:46:hung
+staff:x:50:
+games:x:60:
+users:x:100:
+nogroup:x:65534:
+systemd-journal:x:999:
+systemd-network:x:998:
+systemd-timesync:x:997:
+input:x:996:
+sgx:x:995:
+kvm:x:994:
+render:x:993:
+lxd:x:101:hung
+messagebus:x:102:
+systemd-resolve:x:992:
+_ssh:x:103:
+polkitd:x:991:
+crontab:x:990:
+syslog:x:104:
+uuidd:x:105:
+rdma:x:106:
+tcpdump:x:107:
+landscape:x:108:
+fwupd-refresh:x:989:
+hung:x:1000:
+tss:x:109:
+rtkit:x:110:
+ssl-cert:x:111:
+systemd-oom:x:988:
+whoopsie:x:112:
+netdev:x:113:
+bluetooth:x:114:
+nm-openvpn:x:115:
+scanner:x:116:saned
+avahi:x:117:
+saned:x:118:
+colord:x:119:
+sssd:x:120:
+lpadmin:x:121:
+geoclue:x:122:
+pipewire:x:123:
+gnome-remote-desktop:x:987:
+gdm:x:124:
+root@hung:~# adduser superstudent
+info: Adding user `superstudent' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `superstudent' (1001) ...
+info: Adding new user `superstudent' (1001) with group `superstudent (1001)' ...
+info: Creating home directory `/home/superstudent' ...
+info: Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for superstudent
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+info: Adding new user `superstudent' to supplemental / extra groups `users' ...
+info: Adding user `superstudent' to group `users' ...
+root@hung:~# su superstudent
+superstudent@hung:/root$ exit
+exit
+root@hung:~# exit
+logout
+hung@hung:~$ su superstudent
+Password:
+superstudent@hung:/home/hung$ sudo su
+[sudo] password for superstudent:
+superstudent is not in the sudoers file.
+superstudent@hung:/home/hung$ sudo usermod -aG sudo superstudent
+[sudo] password for superstudent:
+superstudent is not in the sudoers file.
+superstudent@hung:/home/hung$ exit
+exit
+hung@hung:~$ sudo -i
+[sudo] password for hung:
+root@hung:~# sudo usermod -aG sudo superstudent
+root@hung:~# exit
+logout
+hung@hung:~$ su superstudent
+Password:
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+superstudent@hung:/home/hung$ sudo su
+[sudo] password for superstudent:
+root@hung:/home/hung# su superstudent
+superstudent@hung:/home/hung$ group superstudent
+Command 'group' not found, did you mean:
+  command 'grop' from deb grop (2:0.10-1.2)
+  command 'groups' from deb coreutils (9.4-2ubuntu2)
+Try: sudo apt install <deb name>
+superstudent@hung:/home/hung$ groups superstudent
+superstudent : superstudent sudo users
+superstudent@hung:/home/hung$ sudo more /etc/sudoers
+[sudo] password for superstudent:
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# This fixes CVE-2005-4890 and possibly breaks some versions of kdesu
+# (#1011624, https://bugs.kde.org/show_bug.cgi?id=452532)
+Defaults        use_pty
+
+# This preserves proxy settings from user environments of root
+# equivalent users (group sudo)
+#Defaults:%sudo env_keep += "http_proxy https_proxy ftp_proxy all_proxy no_proxy"
+
+# This allows running arbitrary commands, but so does ALL, and it means
+# different sudoers have their choice of editor respected.
+#Defaults:%sudo env_keep += "EDITOR"
+
+# Completely harmless preservation of a user preference.
+#Defaults:%sudo env_keep += "GREP_COLOR"
+
+# While you shouldn't normally run git as root, you need to with etckeeper
+#Defaults:%sudo env_keep += "GIT_AUTHOR_* GIT_COMMITTER_*"
+
+# Per-user preferences; root won't have sensible values for them.
+#Defaults:%sudo env_keep += "EMAIL DEBEMAIL DEBFULLNAME"
+
+# "sudo scp" or "sudo rsync" should be able to use your SSH agent.
+#Defaults:%sudo env_keep += "SSH_AGENT_PID SSH_AUTH_SOCK"
+
+# Ditto for GPG agent
+#Defaults:%sudo env_keep += "GPG_AGENT_INFO"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+superstudent@hung:/home/hung$ sudo adduser student2
+info: Adding user `student2' ...
+info: Selecting UID/GID from range 1000 to 59999 ...
+info: Adding new group `student2' (1002) ...
+info: Adding new user `student2' (1002) with group `student2 (1002)' ...
+info: Creating home directory `/home/student2' ...
+info: Copying files from `/etc/skel' ...
+New password:
+Retype new password:
+passwd: password updated successfully
+Changing the user information for student2
+Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+Is the information correct? [Y/n] y
+info: Adding new user `student2' to supplemental / extra groups `users' ...
+info: Adding user `student2' to group `users' ...
+superstudent@hung:/home/hung$ ls /home
+hung  student  student2  superstudent
+superstudent@hung:/home/hung$ sudo visudo
+superstudent@hung:/home/hung$ sudo visudo
+visudo: /etc/sudoers.tmp unchanged
+superstudent@hung:/home/hung$ su student2
+Password:
+student2@hung:/home/hung$ sudo deluser student
+[sudo] password for student2:
+student2 is not in the sudoers file.
+student2@hung:/home/hung$ su superstudent
+Password:
+superstudent@hung:/home/hung$ sudo deluser student
+fatal: The user `student' does not exist.
+superstudent@hung:/home/hung$ sudo deluser student2
+info: Removing crontab ...
+info: Removing user `student2' ...
+userdel: user student2 is currently used by process 32710
+fatal: `/usr/sbin/userdel student2' returned error code 8. Exiting.
+superstudent@hung:/home/hung$ ^C
+superstudent@hung:/home/hung$ sudo more /etc/sudoers
+#
+# This file MUST be edited with the 'visudo' command as root.
+#
+# Please consider adding local content in /etc/sudoers.d/ instead of
+# directly modifying this file.
+#
+# See the man page for details on how to write a sudoers file.
+#
+Defaults        env_reset
+Defaults        mail_badpass
+Defaults        secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+# This fixes CVE-2005-4890 and possibly breaks some versions of kdesu
+# (#1011624, https://bugs.kde.org/show_bug.cgi?id=452532)
+Defaults        use_pty
+
+# This preserves proxy settings from user environments of root
+# equivalent users (group sudo)
+#Defaults:%sudo env_keep += "http_proxy https_proxy ftp_proxy all_proxy no_proxy"
+
+# This allows running arbitrary commands, but so does ALL, and it means
+# different sudoers have their choice of editor respected.
+#Defaults:%sudo env_keep += "EDITOR"
+
+# Completely harmless preservation of a user preference.
+#Defaults:%sudo env_keep += "GREP_COLOR"
+
+# While you shouldn't normally run git as root, you need to with etckeeper
+#Defaults:%sudo env_keep += "GIT_AUTHOR_* GIT_COMMITTER_*"
+
+# Per-user preferences; root won't have sensible values for them.
+#Defaults:%sudo env_keep += "EMAIL DEBEMAIL DEBFULLNAME"
+
+# "sudo scp" or "sudo rsync" should be able to use your SSH agent.
+#Defaults:%sudo env_keep += "SSH_AGENT_PID SSH_AUTH_SOCK"
+
+# Ditto for GPG agent
+#Defaults:%sudo env_keep += "GPG_AGENT_INFO"
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL:ALL) ALL
+
+# Members of the admin group may gain root privileges
+%admin ALL=(ALL) ALL
+
+# Allow members of group sudo to execute any command
+%sudo   ALL=(ALL:ALL) ALL
+
+# See sudoers(5) for more information on "@include" directives:
+
+@includedir /etc/sudoers.d
+superstudent@hung:/home/hung$ sudo deluser student2
+info: Removing crontab ...
+info: Removing user `student2' ...
+userdel: user student2 is currently used by process 32710
+fatal: `/usr/sbin/userdel student2' returned error code 8. Exiting.
+superstudent@hung:/home/hung$ su student2
+Password:
+student2@hung:/home/hung$ exit
+exit
+superstudent@hung:/home/hung$ sudo deluser student2
+info: Removing crontab ...
+info: Removing user `student2' ...
+userdel: user student2 is currently used by process 32710
+fatal: `/usr/sbin/userdel student2' returned error code 8. Exiting.
+superstudent@hung:/home/hung$ history
+    1  exit
+    2  sudo su
+    3  sudo usermod -aG sudo superstudent
+    4  exit
+    5  sudo deluser student
+    6  sudo deluser student2
+    7  sudo more /etc/sudoers
+    8  sudo deluser student2
+    9  su student2
+   10  sudo deluser student2
+   11  history
+superstudent@hung:/home/hung$ exit
+exit
+student2@hung:/home/hung$ exit
+exit
+superstudent@hung:/home/hung$ exit
+exit
+root@hung:/home/hung# exit
+exit
+superstudent@hung:/home/hung$ exit
+exit
+hung@hung:~$ su superstudent
+Password:
+superstudent@hung:/home/hung$ sudo deluser student2
+[sudo] password for superstudent:
+info: Removing crontab ...
+info: Removing user `student2' ...
+superstudent@hung:/home/hung$ ls /home
+hung  student  student2  superstudent
+superstudent@hung:/home/hung$ ls /home
+hung  student  student2  superstudent
+superstudent@hung:/home/hung$ sudo deluser student2
+fatal: The user `student2' does not exist.
+superstudent@hung:/home/hung$
