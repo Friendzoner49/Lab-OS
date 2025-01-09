@@ -1,0 +1,84 @@
+hung@hung:~$ sudo nano /etc/apt/sources.list
+hung@hung:~$ sudo apt-get install nginx
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+nginx is already the newest version (1.24.0-2ubuntu7.1).
+0 upgraded, 0 newly installed, 0 to remove and 135 not upgraded.
+hung@hung:~$ sudo dpkg --force-all  --remove nginx
+dpkg: nginx: dependency problems, but removing anyway as you requested:
+ nginx-common depends on nginx (>= 1.24.0-2ubuntu7.1).
+ nginx-common depends on nginx (<< 1.24.0-2ubuntu7.1.1~).
+ nginx-common depends on nginx (>= 1.24.0-2ubuntu7.1).
+ nginx-common depends on nginx (<< 1.24.0-2ubuntu7.1.1~).
+
+(Reading database ... 212599 files and directories currently installed.)
+Removing nginx (1.24.0-2ubuntu7.1) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+hung@hung:~$ sudo snap install free-games-webapp
+error: snap "free-games-webapp" is not available on stable but is available to
+       install on the following channels:
+
+       edge       snap install --edge free-games-webapp
+
+       Please be mindful pre-release channels may include features not
+       completely tested or implemented. Get more information with 'snap info
+       free-games-webapp'.
+hung@hung:~$ snap list
+Name               Version          Rev    Tracking       Publisher   Notes
+bare               1.0              5      latest/stable  canonical\u2713  base
+core22             20241119         1720   latest/stable  canonical\u2713  base
+firefox            130.0.1-1        4954   latest/stable  mozilla\u2713    -
+gnome-42-2204      0+git.510a601    178    latest/stable  canonical\u2713  -
+gtk-common-themes  0.1-81-g442e511  1535   latest/stable  canonical\u2713  -
+snapd              2.66.1           23259  latest/stable  canonical\u2713  snapd
+thunderbird        115.12.2-1       491    latest/stable  canonical\u2713  -
+hung@hung:~$ sudo snap install --edge free-games-webapp
+free-games-webapp (edge) 0.9.8 from NotForSale_ (mauringo) installed
+hung@hung:~$ snap list
+Name               Version          Rev    Tracking       Publisher   Notes
+bare               1.0              5      latest/stable  canonical\u2713  base
+core18             20240920         2848   latest/stable  canonical\u2713  base
+core22             20241119         1720   latest/stable  canonical\u2713  base
+firefox            130.0.1-1        4954   latest/stable  mozilla\u2713    -
+free-games-webapp  0.9.8            4      latest/edge    mauringo    -
+gnome-42-2204      0+git.510a601    178    latest/stable  canonical\u2713  -
+gtk-common-themes  0.1-81-g442e511  1535   latest/stable  canonical\u2713  -
+snapd              2.66.1           23259  latest/stable  canonical\u2713  snapd
+thunderbird        115.12.2-1       491    latest/stable  canonical\u2713  -
+hung@hung:~$ sudo ufw allow 22
+Rules updated
+Rules updated (v6)
+hung@hung:~$ sudo ufw allow 80
+Rules updated
+Rules updated (v6)
+hung@hung:~$ sudo ufw enable
+Firewall is active and enabled on system startup
+hung@hung:~$ sudo ufw status
+Status: active
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere                  
+22                         ALLOW       Anywhere                  
+80                         ALLOW       Anywhere                  
+22/tcp (v6)                ALLOW       Anywhere (v6)             
+22 (v6)                    ALLOW       Anywhere (v6)             
+80 (v6)                    ALLOW       Anywhere (v6)             
+
+hung@hung:~$ sudo sysctl -w net.ipv4.ip_forward=1
+net.ipv4.ip_forward = 1
+hung@hung:~$ sudo iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080
+hung@hung:~$ sudo iptables -t nat -L
+Chain PREROUTING (policy ACCEPT)
+target     prot opt source               destination         
+REDIRECT   tcp  --  anywhere             anywhere             tcp dpt:http redir ports 8080
+
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain POSTROUTING (policy ACCEPT)
+target     prot opt source               destination 
