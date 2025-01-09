@@ -1,0 +1,128 @@
+hung@hung:~$ mkdir homework
+hung@hung:~$ cd homework/
+hung@hung:~/homework$ nano file1
+
+hung@hung:~/homework$ ls -al
+total 12
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:35 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file1
+hung@hung:~/homework$ cp file1 file2
+hung@hung:~/homework$ ls -al
+total 16
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:35 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file2
+
+hung@hung:~/homework$ ln -s file1 file3
+hung@hung:~/homework$ ln file1 file4
+hung@hung:~/homework$ ls -al
+total 20
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:38 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  2 hung hung   14 Nov 12 13:35 file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file2
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  2 hung hung   14 Nov 12 13:35 file4
+hung@hung:~/homework$ ls -il
+total 12
+792303 -rw-rw-r-- 2 hung hung 14 Nov 12 13:35 file1
+792301 -rw-rw-r-- 1 hung hung 14 Nov 12 13:35 file2
+792306 lrwxrwxrwx 1 hung hung  5 Nov 12 13:36 file3 -> file1
+792303 -rw-rw-r-- 2 hung hung 14 Nov 12 13:35 file4
+hung@hung:~/homework$ rm file1
+hung@hung:~/homework$ ls -al
+total 16
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:38 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file2
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file4
+hung@hung:~/homework$ ls -al
+total 16
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:38 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file2
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file4
+hung@hung:~/homework$ ls -al
+total 16
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:38 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file2
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file4
+hung@hung:~/homework$ mv file2 file20
+hung@hung:~/homework$ mv file4 file40
+hung@hung:~/homework$ ls -al
+total 16
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:40 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file20
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file40
+hung@hung:~/homework$ ln -s file20 link_file20
+hung@hung:~/homework$ ln -s file40 link_file40
+hung@hung:~/homework$ ls -al
+total 16
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:41 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file20
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file40
+lrwxrwxrwx  1 hung hung    6 Nov 12 13:41 link_file20 -> file20
+lrwxrwxrwx  1 hung hung    6 Nov 12 13:41 link_file40 -> file40
+hung@hung:~/homework$ mkdir links
+hung@hung:~/homework$ mv link*
+hung@hung:~/homework$ ls -al
+total 20
+drwxrwxr-x  3 hung hung 4096 Nov 12 13:41 .
+drwxr-x--- 16 hung hung 4096 Nov 12 13:34 ..
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file20
+lrwxrwxrwx  1 hung hung    5 Nov 12 13:36 file3 -> file1
+-rw-rw-r--  1 hung hung   14 Nov 12 13:35 file40
+drwxrwxr-x  2 hung hung 4096 Nov 12 13:41 links
+hung@hung:~/homework$ cd links/
+hung@hung:~/homework/links$ ls -al
+total 8
+drwxrwxr-x 2 hung hung 4096 Nov 12 13:41 .
+drwxrwxr-x 3 hung hung 4096 Nov 12 13:41 ..
+lrwxrwxrwx 1 hung hung    6 Nov 12 13:41 link_file20 -> file20
+lrwxrwxrwx 1 hung hung    6 Nov 12 13:41 link_file40 -> file40
+
+hung@hung:~$ touch file1
+hung@hung:~$ touch file2
+hung@hung:~$ ls -l
+total 52
+drwxr-xr-x 2 hung hung 4096 Sep 23 09:00 Desktop
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Documents
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Downloads
+-rw-rw-r-- 1 hung hung 5505 Nov 12 11:27 errors.txt
+-rw-rw-r-- 1 hung hung    0 Nov 12 13:49 file1
+-rw-rw-r-- 1 hung hung    0 Nov 12 13:49 file2
+drwxrwxr-x 3 hung hung 4096 Nov 12 13:41 homework
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Music
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Pictures
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Public
+-rw-rw-r-- 1 hung hung    7 Nov 12 11:25 save.txt
+drwx------ 3 hung hung 4096 Sep 30 10:17 snap
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Templates
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Videos
+hung@hung:~$ chmod go-rw file2
+hung@hung:~$ ls -l
+total 52
+drwxr-xr-x 2 hung hung 4096 Sep 23 09:00 Desktop
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Documents
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Downloads
+-rw-rw-r-- 1 hung hung 5505 Nov 12 11:27 errors.txt
+-rw-rw-r-- 1 hung hung    0 Nov 12 13:49 file1
+-rw------- 1 hung hung    0 Nov 12 13:49 file2
+drwxrwxr-x 3 hung hung 4096 Nov 12 13:41 homework
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Music
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Pictures
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Public
+-rw-rw-r-- 1 hung hung    7 Nov 12 11:25 save.txt
+drwx------ 3 hung hung 4096 Sep 30 10:17 snap
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Templates
+drwxr-xr-x 2 hung hung 4096 Sep 15 10:16 Videos
