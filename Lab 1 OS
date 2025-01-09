@@ -1,0 +1,202 @@
+2) Интерфейсы командной строки
+1->6.
+
+hung@hung:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  snap  Templates  Videos
+hung@hung:~$ mkdir Students
+hung@hung:~$ mkdir Mentors
+hung@hung:~$ ls
+Desktop  Documents  Downloads  Mentors  Music  Pictures  Public  snap  Students  Templates  Videos
+hung@hung:~$ cd Students/
+hung@hung:~/Students$ touch students_list.txt
+hung@hung:~/Students$ cat students_list.txt
+Vu Manh Hung
+Akimov Mir Mirovich
+Ivanov Nikita Sergeevich
+Savelieva Okseana Andreevna
+Rechinskiy Timur Vadimovich
+
+hung@hung:~/Students$ cd ..
+hung@hung:~$ cd Mentors/
+hung@hung:~/Mentors$ touch mentors_list.txt
+hung@hung:~/Mentors$ cat mentors_list.txt
+Seliverstov Yaroslav Aleksandrovich
+hung@hung:~/Mentors$ mv mentors_list.txt ~/Students
+hung@hung:~/Mentors$ cd ..
+hung@hung:~$ cd Students/
+hung@hung:~/Students$ ls
+mentors_list.txt  students_list.txt
+hung@hung:~/Students$ cd ..
+hung@hung:~$ rmdir Mentors/
+hung@hung:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  snap  Students  Templates  Videos
+hung@hung:~$ mv ~/Students ~/students_and_mentors
+hung@hung:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  snap  students_and_mentors  Templates  Videos
+hung@hung:~$ rm -r students_and_mentors/
+hung@hung:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  snap  Templates  Videos
+
+
+7. Подключитесь к машине с Linux по протоколу SSH.
+
+PS C:\Windows\system32> ssh hung@192.168.0.112
+hung@192.168.0.112's password:
+Permission denied, please try again.
+hung@192.168.0.112's password:
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-45-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 30 08:51:31 PM UTC 2024
+
+  System load:  0.07               Processes:               268
+  Usage of /:   37.2% of 29.82GB   Users logged in:         1
+  Memory usage: 20%                IPv4 address for enp0s1: 192.168.0.112
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+*** System restart required ***
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 30 09:07:41 2024 from 192.168.0.111
+hung@hung:~$ ls
+Desktop  Documents  Downloads  Music  Pictures  Public  snap  Templates  Video
+
+
+8. Используя дополнительный материал, настроить авторизацию по SSH с использованием ключей.
+
+PS C:\Windows\system32> ssh root@192.168.0.112
+root@192.168.0.112's password:
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-45-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 30 09:24:33 AM UTC 2024
+
+  System load:  0.0                Processes:               263
+  Usage of /:   36.9% of 29.82GB   Users logged in:         2
+  Memory usage: 11%                IPv4 address for enp0s1: 192.168.0.112
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+*** System restart required ***
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 30 09:22:58 2024 from 192.168.0.111
+root@hung:~# exit
+logout
+Connection to 192.168.0.112 closed.
+PS C:\Windows\system32> ssh-keygen
+Generating public/private ed25519 key pair.
+Enter file in which to save the key (C:\Users\PC/.ssh/id_ed25519):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in C:\Users\PC/.ssh/id_ed25519
+Your public key has been saved in C:\Users\PC/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:tWoje3+Pr5YYNoKaDdKYBM0A2b2SZiR5l39txAICTuM pc@Friendzoner
+The key's randomart image is:
++--[ED25519 256]--+
+|+B+o.... .       |
+|=+*.+.  . o      |
+| =Eo o   +.      |
+|  * . . ..o.     |
+| + =   oS..      |
+|  + o . ..+      |
+|   . =. +o + .   |
+|    o .+... +.   |
+|      .. ..oo+o  |
++----[SHA256]-----+
+PS C:\Windows\system32> ssh-copy-id root@192.168.0.112
+ssh-copy-id : The term 'ssh-copy-id' is not recognized as the name of a cmdlet, function, script file, or operable
+program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:1
++ ssh-copy-id root@192.168.0.112
++ ~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (ssh-copy-id:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
+
+PS C:\Windows\system32>  cat ~/.ssh/id_ed25519.pub | ssh root@192.168.0.112 "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+root@192.168.0.112's password:
+PS C:\Windows\system32> ssh root@192.168.0.112
+Welcome to Ubuntu 24.04.1 LTS (GNU/Linux 6.8.0-45-generic aarch64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Sep 30 09:27:36 AM UTC 2024
+
+  System load:  0.0                Processes:               259
+  Usage of /:   36.9% of 29.82GB   Users logged in:         2
+  Memory usage: 11%                IPv4 address for enp0s1: 192.168.0.112
+  Swap usage:   0%
+
+ * Strictly confined Kubernetes makes edge and IoT secure. Learn how MicroK8s
+   just raised the bar for easy, resilient and secure K8s cluster deployment.
+
+   https://ubuntu.com/engage/secure-kubernetes-at-the-edge
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+*** System restart required ***
+
+1 device has a firmware upgrade available.
+Run `fwupdmgr get-upgrades` for more information.
+
+Last login: Mon Sep 30 09:24:33 2024 from 192.168.0.111
+root@hung:~# sudo vi etc/ssh/sshd_config
+root@hung:~# exit
+logout
+Connection to 192.168.0.112 closed.
