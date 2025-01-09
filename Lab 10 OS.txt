@@ -1,0 +1,24 @@
+hung@hung:~$ sudo apt-get update
+hung@hung:~$  sudo apt-get install \
+>     ca-certificates \
+>     curl \
+>     gnupg \
+>     lsb-release
+hung@hung:~$ sudo mkdir -p /etc/apt/keyrings
+hung@hung:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+hung@hung:~$ echo \
+>   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+>   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+hung@hung:~$ sudo apt-get update
+hung@hung:~$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+hung@hung:~$ sudo docker run ubuntu
+Unable to find image 'ubuntu:latest' locally
+latest: Pulling from library/ubuntu
+8bb55f067777: Pull complete 
+Digest: sha256:80dd3c3b9c6cecb9f1667e9290b3bc61b78c2678c02cbdae5f0fea92cc6734ab
+Status: Downloaded newer image for ubuntu:latest
+hung@hung:~$ sudo docker ps -a
+CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS                      PORTS     NAMES
+490f8fab7031   ubuntu    "/bin/bash"   14 seconds ago   Exited (0) 14 seconds ago             optimistic_montalcini
+hung@hung:~$ 
