@@ -1,0 +1,188 @@
+hung@hung:~/char_device_module$ ls
+chardev.c  Makefile  test_devcie.c
+hung@hung:~/char_device_module$ sudo make
+make -C /lib/modules/6.8.0-50-generic/build M=/home/hung/char_device_module modules
+make[1]: Entering directory '/usr/src/linux-headers-6.8.0-50-generic'
+warning: the compiler differs from the one used to build the kernel
+  The kernel was built by: aarch64-linux-gnu-gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  You are using:           gcc-13 (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+  CC [M]  /home/hung/char_device_module/chardev.o
+  MODPOST /home/hung/char_device_module/Module.symvers
+  CC [M]  /home/hung/char_device_module/chardev.mod.o
+  LD [M]  /home/hung/char_device_module/chardev.ko
+  BTF [M] /home/hung/char_device_module/chardev.ko
+Skipping BTF generation for /home/hung/char_device_module/chardev.ko due to unavailability of vmlinux
+make[1]: Leaving directory '/usr/src/linux-headers-6.8.0-50-generic'
+hung@hung:~/char_device_module$ gcc -o run test_devcie.c 
+hung@hung:~/char_device_module$ ./run
+Failed to open device: Permission denied
+hung@hung:~/char_device_module$ sudo ./run
+Failed to open device: No such device or address
+hung@hung:~/char_device_module$ sudo insmod chardev.ko
+hung@hung:~/char_device_module$ sudo ./run
+Written 22 bytes: Hello from user space!
+Read 1002 bytes: 
+Device closed
+hung@hung:~/char_device_module$ cat Makefile
+# Module name
+MODULE_NAME = chardev
+
+# Path to kernel headers
+KERNEL_DIR = /lib/modules/$(shell uname -r)/build
+
+obj-m += chardev.o
+# Current directory
+PWD := $(shell pwd)
+
+# Make
+all: build
+
+build:
+	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) modules
+
+clean:
+	$(MAKE) -C $(KERNEL_DIR) M=$(PWD) clean
+
+install: build
+	@sudo insmod $(MODULE_NAME).ko
+	@echo "Module $(MODULE_NAME) installed."
+
+uninstall:
+	@sudo rmmod $(MODULE_NAME)
+	@echo "Module $(MODULE_NAME) removed."
+
+test:
+	@echo "Testing $(MODULE_NAME)..."
+	@sudo dmesg | tail
+
+
+.PHONY: all build clean install uninstall test
+
+
+hung@hung:~/char_device_module$ cat chardev.c
+#include <linux/module.h>
+#include <linux/fs.h>
+#include <linux/cdev.h>
+#include <linux/uaccess.h>
+
+
+#define DEVICE_NAME "mychardevhung"
+#define BUFFER_SIZE 1024
+
+
+static char device_buffer[BUFFER_SIZE];
+static int open_count = 0;
+static dev_t dev_num;
+static struct cdev my_cdev;
+
+
+// Opening the device
+static int dev_open(struct inode *inode, struct file *file) {
+    open_count++;
+    printk(KERN_INFO "Device opened %d times\n", open_count);
+    return 0;
+}
+
+
+// Closing the device
+static int dev_release(struct inode *inode, struct file *file) {
+    printk(KERN_INFO "Device closed\n");
+    return 0;
+}
+
+
+// Read data from the device
+static ssize_t dev_read(struct file *file, char __user *user_buffer, size_t len, loff_t *offset) {
+    size_t bytes_to_read = min(len, (size_t)(BUFFER_SIZE - *offset));
+
+
+    if (bytes_to_read == 0) {
+        printk(KERN_INFO "Nothing to read\n");
+        return 0;
+    }
+
+
+    if (copy_to_user(user_buffer, device_buffer + *offset, bytes_to_read)) {
+        return -EFAULT;
+    }
+
+
+    *offset += bytes_to_read;
+    printk(KERN_INFO "Read %zu bytes from device\n", bytes_to_read);
+    return bytes_to_read;
+}
+
+
+// Write data to the device
+static ssize_t dev_write(struct file *file, const char __user *user_buffer, size_t len, loff_t *offset) {
+    size_t bytes_to_write = min(len, (size_t)(BUFFER_SIZE - *offset));
+
+
+    if (bytes_to_write == 0) {
+        printk(KERN_INFO "No space left to write\n");
+        return -ENOMEM;
+    }
+
+
+    if (copy_from_user(device_buffer + *offset, user_buffer, bytes_to_write)) {
+        return -EFAULT;
+    }
+
+
+    *offset += bytes_to_write;
+    printk(KERN_INFO "Wrote %zu bytes to device\n", bytes_to_write);
+    return bytes_to_write;
+}
+
+
+static struct file_operations fops = {
+    .owner = THIS_MODULE,
+    .open = dev_open,
+    .release = dev_release,
+    .read = dev_read,
+    .write = dev_write,
+};
+
+// Initialize the module
+static int __init mychardev_init(void) {
+    if (alloc_chrdev_region(&dev_num, 0, 1, DEVICE_NAME) < 0) {
+        printk(KERN_ALERT "Failed to allocate a device number\n");
+        return -1;
+    }
+
+
+    cdev_init(&my_cdev, &fops);
+    if (cdev_add(&my_cdev, dev_num, 1) < 0) {
+        unregister_chrdev_region(dev_num, 1);
+        printk(KERN_ALERT "Failed to add cdev\n");
+        return -1;
+    }
+
+
+    printk(KERN_INFO "Char device registered with major %d and minor %d\n", MAJOR(dev_num), MINOR(dev_num));
+    return 0;
+}
+
+
+// Removing a module
+static void __exit mychardev_exit(void) {
+    cdev_del(&my_cdev);
+    unregister_chrdev_region(dev_num, 1);
+    printk(KERN_INFO "Char device unregistered\n");
+}
+
+
+module_init(mychardev_init);
+module_exit(mychardev_exit);
+
+
+MODULE_LICENSE("GPL");
+MODULE_AUTHOR("Vu Manh Hung");
+MODULE_DESCRIPTION("Simple Character Device Driver");
+
+
+
+
+
+
+hung@hung:~/char_device_module$ 

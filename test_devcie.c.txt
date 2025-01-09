@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/ioctl.h>
+#include <errno.h>
+
+#define DEVICE_PATH "/dev/mychardev"
+#define BUFFER_SIZE 1024
+
+int main() {
+    int fd;
+    char write_buffer[BUFFER_SIZE] = "Hello from user space!";
+    char read_buffer[BUFFER_SIZE];
+    ssize_t bytes_written, bytes_read;
+
+    // Mở thiết bị
+    fd = open(DEVICE_PATH, O_RDWR);  // Mở thiết bị với quyền đọc và ghi
+    if (fd == -1) {
+        perror("Failed to open device");
+        return 1;
+    }
+    
+    // Ghi dữ liệu vào thiết bị
+    bytes_written = write(fd, write_buffer, strlen(write_buffer));
+    if (bytes_written == -1) {
+        perror("Failed to write to device");
+        close(fd);
+        return 1;
+    }
+    printf("Written %zd bytes: %s\n", bytes_written, write_buffer);
+
+    // Đọc dữ liệu từ thiết bị
+    bytes_read = read(fd, read_buffer, BUFFER_SIZE);
+    if (bytes_read == -1) {
+        perror("Failed to read from device");
+        close(fd);
+        return 1;
+    }
+    read_buffer[bytes_read] = '\0';  // Đảm bảo dữ liệu đọc vào là một chuỗi hợp lệ
+    printf("Read %zd bytes: %s\n", bytes_read, read_buffer);
+
+    // Đóng thiết bị
+    close(fd);
+    printf("Device closed\n");
+
+    return 0;
+}
