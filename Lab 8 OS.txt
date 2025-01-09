@@ -1,0 +1,69 @@
+hung@hung:~$ mkfifo lab
+hung@hung:~$ ll
+total 96
+drwxr-x--- 16 hung hung 4096 Dec  4 23:10 ./
+drwxr-xr-x  6 root root 4096 Oct  8 12:42 ../
+-rw-------  1 hung hung 5776 Dec  4 23:10 .bash_history
+-rw-r--r--  1 hung hung  220 Mar 31  2024 .bash_logout
+-rw-r--r--  1 hung hung 3771 Mar 31  2024 .bashrc
+drwx------ 12 hung hung 4096 Sep 23 09:14 .cache/
+drwx------ 17 hung hung 4096 Oct  8 12:07 .config/
+drwxr-xr-x  2 hung hung 4096 Nov 13 13:54 Desktop/
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Documents/
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Downloads/
+drwx------  2 hung hung 4096 Sep 24 09:40 .gnupg/
+drwxrwxr-x  3 hung hung 4096 Nov 12 13:41 homework/
+prw-rw-r--  1 hung hung    0 Dec  4 23:10 lab|
+-rw-------  1 hung hung   20 Oct  8 11:29 .lesshst
+drwx------  4 hung hung 4096 Sep 15 10:16 .local/
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Music/
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Pictures/
+-rw-r--r--  1 hung hung  807 Mar 31  2024 .profile
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Public/
+drwx------  3 hung hung 4096 Sep 30 10:17 snap/
+-rw-r--r--  1 hung hung    0 Sep 15 10:05 .sudo_as_admin_successful
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Templates/
+drwxr-xr-x  2 hung hung 4096 Sep 15 10:16 Videos/
+-rw-------  1 hung hung 1245 Sep 29 18:49 .viminfo
+-rw-------  1 hung hung  100 Oct  8 12:06 .Xauthority
+
+hung@hung:~$ tail -f ./lab
+Hello
+Start
+1
+2
+
+(In the other CMD)
+hung@hung:~$ echo "Hello" > lab
+hung@hung:~$ echo "Start" > lab
+hung@hung:~$ echo 1 > lab
+hung@hung:~$ echo 2 > lab
+hung@hung:~$ ps aux | grep tail
+hung        5077  0.0  0.0   5288  1664 pts/0    S+   23:14   0:00 tail -f ./lab
+hung        5100  0.0  0.0   6140  2048 pts/1    S+   23:15   0:00 grep --color=auto tail
+hung@hung:~$ kill -15 5077
+hung@hung:~$ top | grep systemd
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+    786 systemd+  20   0   17228   6784   6016 S   0.3   0.1   0:01.03 systemd+ 
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+    786 systemd+  20   0   17228   6784   6016 S   0.3   0.1   0:01.04 systemd+ 
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+    786 systemd+  20   0   17228   6784   6016 S   0.3   0.1   0:01.05 systemd+ 
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+      1 root      20   0   23256  13092   8484 S   0.0   0.2   0:03.75 systemd  
+
+hung@hung:~$ echo hello world | grep hello
+hello world
+hung@hung:~$ nano test.txt
+hung@hung:~$ cat test.txt | grep 123
+123 text from test
+
+
+
+
